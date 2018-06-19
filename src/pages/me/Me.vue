@@ -70,7 +70,7 @@
         })
       },
       async addBook(isbn) {
-        const {data} = await post('weapp/book/addBook', {isbn, openId: this.userinfo.openId})
+        const {data} = await post('weapp/book/addBookPost', {isbn, openId: this.userinfo.openId})
         showModal(`【${data.title}】添加成功！`);
       },
     }

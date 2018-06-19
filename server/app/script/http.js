@@ -17,7 +17,6 @@ let h = {
 function get(url, param) {
   return new Promise((rs, rj) => {
     url = `${url}?${encodeGetParam(param)}`;
-    console.log(url);
     https.get(url, (res) => {
       let urlData = '';
       res.on('data', data => {

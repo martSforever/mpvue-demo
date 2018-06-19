@@ -6,12 +6,8 @@
 let {get} = require("../../../app/script/http");
 
 
-async function addBook(ctx, next) {
-
-  console.log('addBook-->>');
-
+async function addBookPost(ctx, next) {
   let {isbn, openId} = ctx.request.body;
-  console.log('添加图书--', isbn, openId);
   if (!!isbn && !!openId) {
     ctx.state.data = await get(`https://api.douban.com/v2/book/isbn/${isbn}`);
   } else {
@@ -21,5 +17,5 @@ async function addBook(ctx, next) {
 }
 
 module.exports = {
-  addBook,
+  addBookPost,
 }
