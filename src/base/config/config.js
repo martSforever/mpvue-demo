@@ -10,3 +10,8 @@ const config = {
 }
 
 export default config;
+
+export let colors = {
+  red: '#EA5149',
+  green: '#39B548'
+}

@@ -1,18 +1,19 @@
 <template>
-  <div>
-    <div>
+  <div class="me-page">
+    <div class="avatar-wrapper">
       <img :src="userinfo.avatarUrl" class="avatar"/>
       <div v-if="isLogin">{{userinfo.nickName}}</div>
-      <button v-if="!isLogin" open-type="getUserInfo" @getuserinfo="getUserAuthorization" @click="checkApiAvailable">
+      <button v-if="!isLogin" open-type="getUserInfo" @getuserinfo="getUserAuthorization" @click="checkApiAvailable"
+              class="login-btn">
         登陆
       </button>
-      <div>openId:{{userinfo.openId}}</div>
     </div>
   </div>
 </template>
 
 <script>
   import {getUser, userLogin} from "../../base/script/wx.user";
+  import {hideLoading, showLoading, showToast} from "../../base/script/msg";
 
   export default {
     name: "me",
@@ -33,18 +34,21 @@
         if (user.isAuth) {
           this.isLogin = user.isAuth;
           this.userinfo = user.userinfo;
-          console.log('用户已经登录！');
+          console.log('用户已经登录！openId:' + this.userinfo.openId);
         } else console.log('用户未登录！');
       },
       async getUserAuthorization(e) {
         console.log('getUserAuthorization');
+        showLoading('正在登陆...');
         /*获取用户授权*/
         if (e.mp.detail.rawData) {
           console.log('用户允许授权。');
           console.log('用户信息-->>', e.mp.detail);
-          this.initializedUser();
           let userinfo = await userLogin();
           console.log(userinfo);
+          this.initializedUser();
+          hideLoading();
+          showToast('登陆成功！');
         } else {
           console.log('用户拒绝授权...')
         }
@@ -57,11 +61,30 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   /*@formatter:off*/
-  .avatar {
-    width: 375rpx;
-    height: 375rpx;
+  .me-page{
+    .avatar-wrapper{
+      padding-top: 12rpx;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      .avatar {
+        width: 120rpx;
+        height: 120rpx;
+        border-radius: 120rpx;
+      }
+      .login-btn{
+        font-size: 24rpx;
+        border-radius: 0;
+        background-color: #39B548;
+        color: white;
+        border: none;
+      }
+    }
   }
+
   /*@formatter:on*/
 </style>
