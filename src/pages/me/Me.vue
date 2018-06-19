@@ -6,12 +6,13 @@
       <button v-if="!isLogin" open-type="getUserInfo" @getuserinfo="getUserAuthorization" @click="checkApiAvailable">
         登陆
       </button>
+      <div>openId:{{userinfo.openId}}</div>
     </div>
   </div>
 </template>
 
 <script>
-  import {getUser} from "../../base/script/wx.user";
+  import {getUser, userLogin} from "../../base/script/wx.user";
   import config from "../../base/config/config";
   import qcloud from 'wafer2-client-sdk';
 
@@ -26,23 +27,26 @@
       }
     },
     mounted() {
-      // 一进来看看用户是否授权过
-      this.initialized()
+      this.initializedUser();
     },
     methods: {
-      async initialized() {
+      async initializedUser() {
         let user = await getUser();
         if (user.isAuth) {
           this.isLogin = user.isAuth;
           this.userinfo = user.userinfo;
-        }
+          console.log('用户已经登录！');
+        } else console.log('用户未登录！');
       },
       async getUserAuthorization(e) {
+        console.log('getUserAuthorization');
         /*获取用户授权*/
         if (e.mp.detail.rawData) {
           console.log('用户允许授权。');
-          console.log('用户信息-->>', e.mp.detail.rowData);
-          this.initialized();
+          console.log('用户信息-->>', e.mp.detail);
+          this.initializedUser();
+          let userinfo = await userLogin();
+          console.log(userinfo);
         } else {
           console.log('用户拒绝授权...')
         }
@@ -53,40 +57,15 @@
       },
 
       doLogin() {
-        console.log('doLogin');
-        const session = qcloud.Session.get()
-        if (session) {
-          // 第二次登录
-          // 或者本地已经有登录态
-          // 可使用本函数更新登录态
-          qcloud.loginWithCode({
-            success: res => {
-              console.log('code-->>', 1);
-              this.isLogin = true;
-              this.userinfo = res;
-              console.log('登录成功')
-            },
-            fail: err => {
-              console.log('code-->>', 2);
-              console.error(err)
-            }
-          })
-        } else {
-          // 首次登录
-          qcloud.setLoginUrl(config.loginUrl);
-          qcloud.login({
-            success: res => {
-              console.log('code-->>', 3);
-              this.isLogin = true;
-              this.userinfo = res;
-              console.log('登录成功')
-            },
-            fail: err => {
-              console.log('code-->>', 4);
-              console.error(err)
-            }
-          })
-        }
+        qcloud.setLoginUrl(config.loginUrl);
+        qcloud.login({
+          success(userInfo) {
+            console.log(userInfo);
+          },
+          fail(err) {
+            console.error(err);
+          },
+        })
       },
     }
   }

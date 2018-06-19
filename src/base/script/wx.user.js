@@ -1,3 +1,7 @@
+import qcloud from 'wafer2-client-sdk';
+import config from "../config/config";
+import {copy} from "./util";
+
 export function getUser() {
   return new Promise((rs, rj) => {
     let user = {};
@@ -23,4 +27,40 @@ export function getUser() {
       },
     });
   })
+}
+
+export function userLogin() {
+  return new Promise((rs, rj) => {
+    /*检查用户登录是否过期*/
+    wx.checkSession({
+      async success(req) {
+        console.log('已登录...', req);
+        rs();
+      },
+      async fail(req) {
+        console.log('已过期，重新登录后台...', req);
+        qcloud.clearSession();
+        let userInfo = await wxLogin();
+        rs(userInfo);
+      }
+    })
+    ;
+  })
+}
+
+function wxLogin() {
+  return new Promise((rs, rj) => {
+    qcloud.setLoginUrl(config.loginUrl);
+    qcloud.login({
+      success(userInfo) {
+        let ret = copy(userInfo);
+        wx.setStorageSync('userinfo', userInfo);
+        rs(ret);
+      },
+      fail(err) {
+        console.error('qcloud.login:fail-->>',err)
+        rj(err);
+      },
+    })
+  });
 }
