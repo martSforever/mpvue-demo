@@ -1,3 +1,4 @@
+/*
 let {initializeMapper} = require('./app/script/mapper.js');
 
 
@@ -8,3 +9,12 @@ async function start() {
 }
 
 let result = start();
+*/
+
+
+async function start2() {
+  let controllers = await require('./modules/controller.js');
+  console.log('controllers-->>',controllers);
+}
+
+start2();

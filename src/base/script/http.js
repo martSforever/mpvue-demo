@@ -1,4 +1,5 @@
 import config from "../config/config";
+import {showModal} from "./msg";
 
 export function get(url, param) {
   return request(url, param, 'GET');
@@ -31,6 +32,9 @@ function request(url, param, method) {
 }
 
 function defaultErrorHandler(rj, data) {
+  showModal(JSON.stringify(data), {
+    title: '请求失败'
+  })
   console.error('reject-->>', data);
   rj(data);
 }

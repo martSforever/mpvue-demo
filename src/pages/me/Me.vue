@@ -15,8 +15,9 @@
 
 <script>
   import {getUser, userLogin} from "../../base/script/wx.user";
-  import {hideLoading, showLoading, showToast} from "../../base/script/msg";
+  import {hideLoading, showLoading, showModal, showToast} from "../../base/script/msg";
   import YearProgress from "../../base/components/YearProgress/year-progress";
+  import {post} from "../../base/script/http";
 
   export default {
     components: {YearProgress},
@@ -64,10 +65,15 @@
       async scanBook() {
         console.log('添加图书');
         wx.scanCode({
-          success(res) {
-            console.log(res);
+          success: (res) => {
+            res && (this.addBook(res));
           },
         })
+      },
+      async addBook(isbbn) {
+        const data = await post('/weapp/addBook', {isbbn, openId: this.userinfo.openId})
+        console.log(data);
+        showModal(`${data.title}添加成功！`);
       },
     }
   }
