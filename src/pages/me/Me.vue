@@ -5,8 +5,9 @@
       <div v-if="isLogin">{{userinfo.nickName}}</div>
       <button v-if="!isLogin" open-type="getUserInfo" @getuserinfo="getUserAuthorization" @click="checkApiAvailable"
               class="login-btn">
-        登陆
+        点击登陆
       </button>
+      <year-progress/>
       <button @click="scanBook" class="scan-btn" v-if="isLogin">添加图书</button>
     </div>
   </div>
@@ -15,8 +16,10 @@
 <script>
   import {getUser, userLogin} from "../../base/script/wx.user";
   import {hideLoading, showLoading, showToast} from "../../base/script/msg";
+  import YearProgress from "../../base/components/YearProgress/year-progress";
 
   export default {
+    components: {YearProgress},
     name: "me",
     data() {
       return {
@@ -48,11 +51,11 @@
           let userinfo = await userLogin();
           console.log(userinfo);
           this.initializedUser();
-          hideLoading();
           showToast('登陆成功！');
         } else {
           console.log('用户拒绝授权...')
         }
+        hideLoading();
       },
       async checkApiAvailable() {
         /*检查用户微信版本是否兼容当前获取用户信息的api，不兼容的话，提示用户更新小程序*/
@@ -87,17 +90,19 @@
       }
       .login-btn{
         font-size: 24rpx;
-        border-radius: 0;
-        background-color: #39B548;
-        color: white;
+        background-color: transparent;
+        color: black;
         border: none;
+        margin-bottom: 24rpx;
       }
       .scan-btn{
         font-size: 24rpx;
-        border-radius: 12rpx;
         background-color: #EA5149;
+        border-radius: 0;
+        width: 100%;
         color: white;
         border: none;
+        margin-top: 12rpx;
       }
     }
   }
