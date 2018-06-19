@@ -7,6 +7,7 @@
               class="login-btn">
         登陆
       </button>
+      <button @click="scanBook" class="scan-btn" v-if="isLogin">添加图书</button>
     </div>
   </div>
 </template>
@@ -57,6 +58,14 @@
         /*检查用户微信版本是否兼容当前获取用户信息的api，不兼容的话，提示用户更新小程序*/
         if (!wx.canIUse('button.open-type.getUserInfo')) console.log('请升级微信版本')
       },
+      async scanBook() {
+        console.log('添加图书');
+        wx.scanCode({
+          success(res) {
+            console.log(res);
+          },
+        })
+      },
     }
   }
 </script>
@@ -80,6 +89,13 @@
         font-size: 24rpx;
         border-radius: 0;
         background-color: #39B548;
+        color: white;
+        border: none;
+      }
+      .scan-btn{
+        font-size: 24rpx;
+        border-radius: 12rpx;
+        background-color: #EA5149;
         color: white;
         border: none;
       }

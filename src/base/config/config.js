@@ -1,6 +1,7 @@
 //配置项
 
 const host = 'http://localhost:5757';
+const prodHost = 'https://vaidnoho.qcloud.la';
 
 const config = {
   host,
