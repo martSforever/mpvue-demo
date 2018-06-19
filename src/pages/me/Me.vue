@@ -13,8 +13,6 @@
 
 <script>
   import {getUser, userLogin} from "../../base/script/wx.user";
-  import config from "../../base/config/config";
-  import qcloud from 'wafer2-client-sdk';
 
   export default {
     name: "me",
@@ -54,18 +52,6 @@
       async checkApiAvailable() {
         /*检查用户微信版本是否兼容当前获取用户信息的api，不兼容的话，提示用户更新小程序*/
         if (!wx.canIUse('button.open-type.getUserInfo')) console.log('请升级微信版本')
-      },
-
-      doLogin() {
-        qcloud.setLoginUrl(config.loginUrl);
-        qcloud.login({
-          success(userInfo) {
-            console.log(userInfo);
-          },
-          fail(err) {
-            console.error(err);
-          },
-        })
       },
     }
   }
