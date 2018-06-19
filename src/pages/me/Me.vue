@@ -17,7 +17,7 @@
   import {getUser, userLogin} from "../../base/script/wx.user";
   import {hideLoading, showLoading, showModal, showToast} from "../../base/script/msg";
   import YearProgress from "../../base/components/YearProgress/year-progress";
-  import {post} from "../../base/script/http";
+  import {get, post} from "../../base/script/http";
 
   export default {
     components: {YearProgress},
@@ -63,17 +63,15 @@
         if (!wx.canIUse('button.open-type.getUserInfo')) console.log('请升级微信版本')
       },
       async scanBook() {
-        console.log('添加图书');
         wx.scanCode({
           success: (res) => {
-            res && (this.addBook(res));
+            res && (this.addBook(res.result));
           },
         })
       },
-      async addBook(isbbn) {
-        const data = await post('/weapp/addBook', {isbbn, openId: this.userinfo.openId})
-        console.log(data);
-        showModal(`${data.title}添加成功！`);
+      async addBook(isbn) {
+        const {data} = await post('weapp/book/addBook', {isbn, openId: this.userinfo.openId})
+        showModal(`【${data.title}】添加成功！`);
       },
     }
   }
