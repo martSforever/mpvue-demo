@@ -3,8 +3,9 @@
 *  1、获取豆瓣信息；
 *  2、入库；
 */
-let {get} = require("../../../app/script/http");
-let {mysql} = require('../../../qcloud')
+const {get} = require("../../../app/script/http");
+const {mysql} = require('../../../qcloud')
+const config = require('../../../app/script/config')
 
 async function addBookPost(ctx, next) {
   let {isbn, openId} = ctx.request.body;
@@ -47,9 +48,14 @@ async function addBookPost(ctx, next) {
 }
 
 async function list(ctx) {
+  let pageSize = config.pageSize;
+  let page = ctx.params.page;
+
   const list = await mysql('books')
     .select('books.*', 'cSessionInfo.user_info')
     .join('cSessionInfo', 'books.openId', 'cSessionInfo.open_id')
+    .limit(pageSize)
+    .offset(pageSize * (page - 0))
     .orderBy('createdAt', 'desc');
   list.forEach((item) => {
     item.userinfo = JSON.parse(item.user_info);

@@ -4,12 +4,16 @@ const debug = require('debug')('koa-weapp-demo')
 const response = require('./middlewares/response')
 const bodyParser = require('koa-bodyparser')
 const config = require('./config')
-let log = require('./app/script/log')
+const log = require('./app/script/log')
+const params = require('./middlewares/params')
 
 global.log = log;
 
 // 使用响应处理中间件
 app.use(response)
+
+// 处理请求参数中间件
+app.use(params)
 
 // 解析请求体
 app.use(bodyParser())

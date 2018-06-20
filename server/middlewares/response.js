@@ -1,4 +1,3 @@
-const debug = require('debug')('koa-weapp-demo')
 const log = require('../app/script/log');
 
 /**
@@ -7,8 +6,7 @@ const log = require('../app/script/log');
 module.exports = async function (ctx, next) {
   try {
     // 调用下一个 middleware
-    await
-      next()
+    await next()
 
     // 处理响应结果
     // 如果直接写入在 body 中，则不作处理
