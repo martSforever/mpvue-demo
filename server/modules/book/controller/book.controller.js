@@ -46,6 +46,19 @@ async function addBookPost(ctx, next) {
   ctx.state.message && log.success(ctx.state.message);
 }
 
+async function list(ctx) {
+  const list = await mysql('books')
+    .select('books.*', 'cSessionInfo.user_info')
+    .join('cSessionInfo', 'books.openId', 'cSessionInfo.open_id')
+    .orderBy('createdAt', 'desc');
+  list.forEach((item) => {
+    item.userinfo = JSON.parse(item.user_info);
+    delete item.user_info;
+  })
+  ctx.state = {code: 0, data: list}
+}
+
 module.exports = {
   addBookPost,
+  list,
 }
