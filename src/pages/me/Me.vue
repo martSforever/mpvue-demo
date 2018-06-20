@@ -70,8 +70,10 @@
         })
       },
       async addBook(isbn) {
-        const {data} = await post('weapp/book/addBookPost', {isbn, openId: this.userinfo.openId})
-        showModal(`【${data.title}】添加成功！`);
+        const data = await post('weapp/book/addBookPost', {isbn, openId: this.userinfo.openId})
+        if (!!data) {
+          showModal(`添加图书成功：【${data.title}】！`);
+        }
       },
     }
   }

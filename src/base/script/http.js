@@ -16,29 +16,28 @@ function request(url, param, method) {
       url: config.host + '/' + url,
       data: param,
       method: method,
-      success(res) {
-        let data = res.data;
-        if (data.code === config.successCode) {
-          defaultSuccessHandler(rs, data);
+      success({data: state}) {
+        if (state.code === config.successCode) {
+          defaultSuccessHandler(rs, state.data);
         } else {
-          defaultErrorHandler(rj, data);
+          defaultErrorHandler(rj, state);
         }
       },
-      fail(res) {
-        defaultErrorHandler(rj, res.data);
+      fail({data: state}) {
+        defaultErrorHandler(rj, state);
       },
     });
   })
 }
 
-function defaultErrorHandler(rj, data) {
-  showModal(JSON.stringify(data), {
+function defaultErrorHandler(rj, state) {
+  showModal(state.message, {
     title: '请求失败'
   })
-  console.error('reject-->>', data);
-  rj(data);
+  console.error('reject-->>', state.message);
+  rj(state);
 }
 
-function defaultSuccessHandler(rs, data) {
-  rs(data);
+function defaultSuccessHandler(rs, state) {
+  rs(state);
 }

@@ -4,6 +4,8 @@
 *  2、入库；
 */
 let {get} = require("../../../app/script/http");
+let {mysql} = require('../../../qcloud')
+let log = require('../../../app/script/log')
 
 
 async function addBookPost(ctx, next) {
@@ -17,14 +19,34 @@ async function addBookPost(ctx, next) {
       return `${v.title} ${v.count}`;
     }).join(',');
     let authors = bookInfo.author.join(',');
-    let ret = {
-      rate, title, image, alt, publisher, summary, price, tags, authors
+    let result = {
+      isbn,
+      openId,
+      rate, title, image, alt, publisher, summary, price, tags, authors,
+      createdAt: new Date(),
+      createdBy: openId,
+      updatedAt: new Date(),
+      updatedBy: openId
     }
-    console.log(ret);
-
-    ctx.state.data = bookInfo;
+    try {
+      await mysql('books').insert(result);
+      ctx.state = {
+        code: 0,
+        message: '新增成功!',
+        data:result
+      }
+    } catch (e) {
+      log.error(`sql异常：${e.sqlMessage}`);
+      ctx.state = {
+        code: -1,
+        message: `新增失败：${e.sqlMessage}`,
+      }
+    }
   } else {
-    ctx.state.code = 1;
+    ctx.state = {
+      code: -1,
+      message: 'isbn或者openId为空！',
+    }
   }
 
 }
