@@ -1,4 +1,5 @@
 const debug = require('debug')('koa-weapp-demo')
+const log = require('../app/script/log');
 
 /**
  * 响应处理模块
@@ -19,15 +20,15 @@ module.exports = async function (ctx, next) {
     }
   } catch (e) {
     // catch 住全局的错误信息
-    debug('Catch Error: %o', e)
-
-    // 设置状态码为 200 - 服务端错误
-    ctx.status = 200
-
+    // debug('Catch Error: %o', e)
+    log.error(e);
+    // 设置状态码为 500 - 服务端错误
+    ctx.status = 500
+    let errMsg = e.sqlMessage || e.message;
     // 输出详细的错误信息
     ctx.body = {
       code: -1,
-      error: e && e.message ? e.message : e.toString()
+      message: errMsg ? errMsg : e.toString()
     }
   }
 }
