@@ -8,6 +8,7 @@ const config = {
   successCode: 0,
   loginUrl: `${host}/weapp/login`,
   userUrl: `${host}/weapp/user`,
+  pageSize:8
 }
 
 export default config;
