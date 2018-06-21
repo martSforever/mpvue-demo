@@ -1,10 +1,10 @@
 <template>
   <div class="rate">
-    {{value}}
     <div class="star-wrapper">
       <span>☆☆☆☆☆</span>
       <div class="hollow" :style="hollowStyles">★★★★★</div>
     </div>
+    {{value}}
   </div>
 </template>
 

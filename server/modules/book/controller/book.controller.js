@@ -64,7 +64,27 @@ async function list(ctx) {
   ctx.state = {code: 0, data: list}
 }
 
+async function detail(ctx) {
+  console.log("detail", ctx.params);
+  let books = await mysql('books').where('id', ctx.params.id).limit(1).select('*');
+  ctx.state = {code: 0, data: books[0]}
+}
+
+/*
+*  浏览量加一
+*/
+async function addCount(ctx) {
+  if (!ctx.params.id) {
+    ctx.state = {code: -1, message: 'id不能为空!'};
+    return;
+  }
+  await mysql('books').where('id', ctx.params.id).increment('count', 1);
+  await detail(ctx);
+}
+
 module.exports = {
   addBookPost,
   list,
+  detail,
+  addCount
 }

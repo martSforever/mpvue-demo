@@ -10,7 +10,7 @@
         </p>
       </div>
       <div class="row"><p>{{book.authors}}</p>
-        <p>浏览量</p></div>
+        <p>浏览量：{{book.count}}</p></div>
       <div class="row"><p>{{book.publisher}}</p>
         <p>{{book.userinfo.nickName}}</p></div>
     </div>
