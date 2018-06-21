@@ -1,7 +1,7 @@
 <template>
   <div class="card" @click="handleClick">
     <div class="thumb">
-      <img :src="book.image" class="image" mode="aspectFit">
+      <img :src="book.image" class="image" mode="aspectFit" @click.stop="handleClickImage(book)">
     </div>
     <div class="detail">
       <div class="row"><p>{{book.title}}</p>
@@ -27,8 +27,11 @@
       book: {}
     },
     methods: {
-      handleClick(e){
+      handleClick(e) {
         this.$emit('click', e);
+      },
+      handleClickImage(book) {
+        this.$emit('clickImage', book);
       },
     }
   }
