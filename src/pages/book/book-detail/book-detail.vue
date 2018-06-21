@@ -1,8 +1,7 @@
 <template>
   <div>
-    book detail
     <div>
-      {{book.id}}
+      {{book.id}}--{{book.title}}--{{book.count}}
     </div>
   </div>
 </template>
@@ -24,10 +23,8 @@
     },
     methods: {
       async getDetail() {
-        console.log('getDetail-11')
-        let newBook = await post('weapp/book/addCount',{id:this.book.id});
-        console.log('getDetail-22')
-        console.log(newBook);
+        let newBook = await post('weapp/book/addCount', {id: this.book.id});
+        this.book = newBook;
       },
     },
   }

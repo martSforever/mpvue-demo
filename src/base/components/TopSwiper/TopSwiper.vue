@@ -11,7 +11,13 @@
       <div v-for="(imgs,index) in imgChunks" :key="index">
         <swiper-item>
           <div class="slider-item-wrapper">
-            <img :src="img.image" mode="aspectFit" class="slider-item-image" v-for="(img,index2) in imgs" :key="index2">
+            <img
+              @click="handleClickImg(img)"
+              :src="img.image"
+              mode="aspectFit"
+              class="slider-item-image"
+              v-for="(img,index2) in imgs"
+              :key="index2">
           </div>
         </swiper-item>
       </div>
@@ -33,6 +39,11 @@
         indicatorColor: colors.red
       }
     },
+    methods: {
+      handleClickImg(img) {
+        this.$emit('clickImage', img);
+      },
+    }
   }
 </script>
 

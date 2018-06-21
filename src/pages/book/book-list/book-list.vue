@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-swiper :img-chunks="imgChunks"></top-swiper>
+    <top-swiper :img-chunks="imgChunks" @clickImage="showDetail"/>
     <card v-for="(book,index) in dataOptions.dataList" :key="index" :book="book" @click="showDetail(book)"></card>
     <div class="text-footer" v-if="!dataOptions.more">
       没有更多数据了
@@ -44,7 +44,7 @@
       },
       async getTop() {
         console.log('getTop');
-        let tops = await get('weapp/book/topBook',{num:9});
+        let tops = await get('weapp/book/topBook', {num: 9});
         this.tops = tops;
       },
     },
