@@ -1,5 +1,6 @@
 <template>
   <div>
+    <top-swiper :img-chunks="imgChunks"></top-swiper>
     <card v-for="(book,index) in dataOptions.dataList" :key="index" :book="book" @click="showDetail(book)"></card>
     <div class="text-footer" v-if="!dataOptions.more">
       没有更多数据了
@@ -11,9 +12,15 @@
 
   import Card from "../../../base/components/Card/Card";
   import dataListMixin from "../../../base/script/dataList-mixin";
+  import {get} from "../../../base/script/http";
+  import TopSwiper from "../../../base/components/TopSwiper/TopSwiper";
+  import {chunk} from "../../../base/script/util";
 
   export default {
-    components: {Card},
+    components: {
+      TopSwiper,
+      Card
+    },
     name: "book-list",
     mixins: [dataListMixin],
     data() {
@@ -21,12 +28,29 @@
         dataOptions: {
           url: 'weapp/book/list',
         },
+        tops: []
       }
+    },
+    mounted() {
+      this.getTop();
+    },
+    onPullDownRefresh() {
+      this.getTop();
     },
     methods: {
       showDetail(book) {
         console.log('showDetail');
-        this.$nav.goto('../book-detail/main',book)
+        this.$nav.goto('../book-detail/main', book)
+      },
+      async getTop() {
+        console.log('getTop');
+        let tops = await get('weapp/book/topBook',{num:9});
+        this.tops = tops;
+      },
+    },
+    computed: {
+      imgChunks() {
+        return chunk(this.tops, 3);
       },
     }
   }

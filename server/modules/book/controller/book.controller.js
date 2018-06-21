@@ -82,9 +82,20 @@ async function addCount(ctx) {
   await detail(ctx);
 }
 
+async function topBook(ctx) {
+  if (!ctx.params || !ctx.params.num) {
+    ctx.params = {
+      num: 6
+    }
+  }
+  let books = await mysql('books').orderBy('count', 'desc').limit(ctx.params.num).select('*');
+  ctx.state = {code: 0, data: books}
+}
+
 module.exports = {
   addBookPost,
   list,
   detail,
-  addCount
+  addCount,
+  topBook
 }
