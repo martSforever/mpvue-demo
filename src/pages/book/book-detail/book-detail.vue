@@ -17,7 +17,6 @@
       }
     },
     mounted() {
-      console.log();
       this.book.id = this.$root.$mp.query.id;
       this.getDetail();
     },
