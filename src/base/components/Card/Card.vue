@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" @click="handleClick">
     <div class="thumb">
       <img :src="book.image" class="image" mode="aspectFit">
     </div>
@@ -26,10 +26,11 @@
     props: {
       book: {}
     },
-    mounted() {
-
-    },
-    methods: {}
+    methods: {
+      handleClick(e){
+        this.$emit('click', e);
+      },
+    }
   }
 </script>
 

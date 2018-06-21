@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App'
+import './base/script/navigator';
 
 Vue.config.prodctionTip = false;
 
@@ -8,7 +9,7 @@ app.$mount();
 
 export default {
   config: {
-    pages: ['^pages/books/main'],
+    pages: ['^pages/book/book-list/main'],
     window: {
       "backgroundTextStyle": "light",
       "navigationBarBackgroundColor": "#EA5149",
@@ -22,7 +23,7 @@ export default {
           text: '图书',
           iconPath: "static/img/book.png",
           selectedIconPath: 'static/img/book-active.png',
-          pagePath: 'pages/books/main',
+          pagePath: 'pages/book/book-list/main',
         },
         {
           text: '评论列表',
