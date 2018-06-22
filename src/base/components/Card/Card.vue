@@ -4,7 +4,7 @@
       <img :src="book.image" class="image" mode="aspectFit" @click.stop="handleClickImage(book)">
     </div>
     <div class="detail">
-      <div class="row"><p>{{book.title}}</p>
+      <div class="row"><p class="title">{{book.title}}</p>
         <p>
           <rate :value="book.rate"></rate>
         </p>
@@ -12,7 +12,7 @@
       <div class="row"><p>{{book.authors}}</p>
         <p>浏览量：{{book.count}}</p></div>
       <div class="row"><p>{{book.publisher}}</p>
-        <p>{{book.userinfo.nickName}}</p></div>
+        <p>{{book.userInfo.nickName}}</p></div>
     </div>
   </div>
 </template>
@@ -75,6 +75,9 @@
           white-space: nowrap;
           text-overflow: ellipsis;
           overflow: hidden;
+        }
+        p.title{
+          color: #EA5149;
         }
       }
     }

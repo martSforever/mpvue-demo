@@ -28,11 +28,12 @@
 <style lang="scss">
   /*@formatter:off*/
   .rate{
+    display: inline-block;
+    color: #EA5149;
     .star-wrapper{
       display: inline-block;
       position: relative;
       font-size: 1em;
-      color: #EA5149;
       .hollow{
         position: absolute;
         display: inline-block;

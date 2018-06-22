@@ -58,16 +58,27 @@ async function list(ctx) {
     .offset(pageSize * (page - 0))
     .orderBy('createdAt', 'desc');
   list.forEach((item) => {
-    item.userinfo = JSON.parse(item.user_info);
+    item.userInfo = JSON.parse(item.user_info);
     delete item.user_info;
+    item.tags = item.tags.split(',');
+    item.summary = item.summary.split('\n');
   })
   ctx.state = {code: 0, data: list}
 }
 
 async function detail(ctx) {
   console.log("detail", ctx.params);
-  let books = await mysql('books').where('id', ctx.params.id).limit(1).select('*');
-  ctx.state = {code: 0, data: books[0]}
+  let book = await mysql('books')
+    .select('books.*', 'cSessionInfo.user_info')
+    .join('cSessionInfo', 'books.openId', 'cSessionInfo.open_id')
+    .where('id', ctx.params.id)
+    .first();
+  book.tags = book.tags.split(',');
+  book.summary = book.summary.split('\n');
+  book.userInfo = JSON.parse(book.user_info);
+  delete book.user_info;
+
+  ctx.state = {code: 0, data: book}
 }
 
 /*

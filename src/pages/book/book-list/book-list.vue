@@ -51,9 +51,7 @@
       handleClickBooksImage(book) {
         wx.previewImage({
           current: book.image,
-          urls: this.dataOptions.dataList.map((book) => {
-            return book.image;
-          })
+          urls: this.dataOptions.dataList.map((book) => book.image)
         });
       },
     },
