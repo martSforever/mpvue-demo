@@ -8,7 +8,7 @@ const config = {
   successCode: 0,
   loginUrl: `${host}/weapp/login`,
   userUrl: `${host}/weapp/user`,
-  pageSize:8
+  pageSize: 8
 }
 
 export default config;
@@ -17,3 +17,4 @@ export let colors = {
   red: '#EA5149',
   green: '#39B548'
 }
+
