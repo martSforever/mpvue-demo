@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    .body{
+      background-color: black;
+    }
+  </style>
+</head>
+<body class="body">
+
+<div>
+  <canvas id="canvasId" width="400" height="350"></canvas>
+</div>
+<script type="text/javascript">
+  var canvas = document.getElementById("canvasId");
+  var context = canvas.getContext("2d");
+  context.fillStyle = "#FF99FF";//设置填充色（可以是渐变色或半透明色）
+  context.fillRect(0,0,canvas.width,canvas.height);//填充背景我色
+  context.clearRect(50,100,150,100);//抠出一个矩形区域
+</script>
+
+</body>
+</html>

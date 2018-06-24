@@ -41,6 +41,8 @@
       }
     },
     mounted() {
+      console.log('currentPageData', this.$nav.currentPageData);
+
       this.book.id = this.$root.$mp.query.id;
       this.getDetail();
       const userinfo = wx.getStorageSync('userinfo');
@@ -86,6 +88,9 @@
           this.comment = '';
         }
       },
+    },
+    onUnload(){
+        console.log('book detail onUnload');
     },
   }
 </script>

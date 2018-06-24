@@ -40,7 +40,6 @@
     },
     methods: {
       showDetail(book) {
-        console.log('showDetail');
         this.$nav.goto('../book-detail/main', book)
       },
       async getTop() {
