@@ -1,41 +1,59 @@
 import Vue from 'vue';
-import {encodeGetParam} from "./util";
 
-let datas = [];
+let pageDatas = [];
 
 export let nav = {
-  goto(url, param, success, fail, complete) {
-    let options = {url: `${url}?${encodeGetParam(param)}`, success, fail, complete};
-    datas.push(param);
+  goto(url, params, success, fail, complete) {
+    let options = {url: url, success, fail, complete};
+    pageDatas.push({
+      url: url,
+      params: params,
+      timestamp: new Date().yyyyMMdd_hhmmss()
+    });
     wx.navigateTo(options);
   },
   goBack() {
     wx.navigateBack();
-    let param = datas.pop();
-    console.log('goBack', param)
-    return param;
   },
-  get currentPageData() {
-    if (!!datas && datas.length > 0) {
-      return datas[datas.length - 1];
+  get currentPageParam() {
+    return !!nav.currentPageData ? Object.assign({}, nav.currentPageData.params) : null;
+  },
+  set currentPageParam(newParam) {
+    if (!!pageDatas && pageDatas.length > 0) {
+      let oldParam = pageDatas[pageDatas.length - 1].params;
+      Object.assign(oldParam, newParam);
     } else {
-      console.warn('datas is empty');
+      console.warn('pageDatas is empty');
       return null;
     }
   },
-  set currentPageData(value) {
-    let abadon = datas.pop();
-    datas.push(value);
-    return abadon;
+  get currentPageData() {
+    if (!!pageDatas && pageDatas.length > 0) {
+      return pageDatas[pageDatas.length - 1];
+    } else {
+      console.warn('pageDatas is empty');
+      return null;
+    }
+  },
+  get pageDatas() {
+    return pageDatas;
   },
 };
 
 Vue.prototype.$nav = nav;
-Vue.mixin({
-  onUnload(){
-      console.log('navigator onUnload...');
-  },
-  onLoad(){
-    console.log('navigator onLoad...');
-  },
-})
+
+export class Page {
+  constructor(PageComponent) {
+    if (!PageComponent.mixins) PageComponent.mixins = [];
+    PageComponent.mixins.push({
+      onLoad() {
+        // console.log(nav.currentPageParam)
+      },
+      onUnload() {
+        let abandon = pageDatas.pop();
+        // console.log(abandon,nav.currentPageParam)
+      },
+    })
+    return new Vue(PageComponent);
+  }
+}

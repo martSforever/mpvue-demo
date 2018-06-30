@@ -1,5 +1,6 @@
 <template>
   <div>
+    <button @click="goto">{{nextPageParam.name}}</button>
     <book-info :book="book"/>
     <div class="comment-wrapper">
       <div class="other">
@@ -38,12 +39,13 @@
         location: '',
         phoneType: '',
         userinfo: {},
+        nextPageParam: {
+          name: 'martsforever'
+        }
       }
     },
     mounted() {
-      console.log('currentPageData', this.$nav.currentPageData);
-
-      this.book.id = this.$root.$mp.query.id;
+      this.book = this.$nav.currentPageParam;
       this.getDetail();
       const userinfo = wx.getStorageSync('userinfo');
       if (userinfo) {
@@ -51,6 +53,9 @@
       }
     },
     methods: {
+      goto() {
+        this.$nav.goto('/pages/book/main', this.nextPageParam);
+      },
       async getDetail() {
         this.book = await post('weapp/book/addCount', {id: this.book.id});
         !!this.book.title && wx.setNavigationBarTitle({title: this.book.title});
@@ -88,9 +93,6 @@
           this.comment = '';
         }
       },
-    },
-    onUnload(){
-        console.log('book detail onUnload');
     },
   }
 </script>

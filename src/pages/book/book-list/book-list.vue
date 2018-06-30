@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!--<button @click="goto">goto</button>-->
     <top-swiper :img-chunks="imgChunks" @clickImage="showDetail"/>
     <card v-for="(book,index) in dataOptions.dataList" :key="index" :book="book" @click="showDetail(book)"
           @clickImage="handleClickBooksImage"></card>
@@ -39,6 +40,11 @@
       this.getTop();
     },
     methods: {
+      goto(){
+          wx.navigateTo({
+            url:'/pages/book/main'
+          });
+      },
       showDetail(book) {
         this.$nav.goto('../book-detail/main', book)
       },

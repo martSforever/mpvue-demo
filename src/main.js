@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App'
 import './base/script/navigator';
+import './base/script/prototype';
 
 Vue.config.prodctionTip = false;
 
