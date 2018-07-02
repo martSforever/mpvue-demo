@@ -22,19 +22,19 @@ export default {
       list: [
         {
           text: '开发测试',
-          iconPath: "static/img/book.png",
-          selectedIconPath: 'static/img/book-active.png',
+          iconPath: "static/img/development-inactive.png",
+          selectedIconPath: 'static/img/development-active.png',
           pagePath: 'pages/dev/main',
         },
         {
           text: '示例',
-          iconPath: "static/img/todo.png",
-          selectedIconPath: 'static/img/todo-active.png',
+          iconPath: "static/img/caselist-inactive.png",
+          selectedIconPath: 'static/img/caselist-active.png',
           pagePath: 'pages/example/main',
         },
         {
           text: '个人中心',
-          iconPath: "static/img/me.png",
+          iconPath: "static/img/me-inactive.png",
           selectedIconPath: 'static/img/me-active.png',
           pagePath: 'pages/me/main',
         },
