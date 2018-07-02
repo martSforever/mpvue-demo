@@ -1,7 +1,8 @@
 import App from './book-detail'
-import {Page} from "../../../base/script/navigator";
-
-const app = new Page(App);
+import Vue from 'vue';
+import {packing} from "../../../base/script/navigator";
+packing(App)
+const app = new Vue(App);
 app.$mount();
 
 export default {

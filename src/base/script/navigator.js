@@ -42,18 +42,17 @@ export let nav = {
 
 Vue.prototype.$nav = nav;
 
-export class Page {
-  constructor(PageComponent) {
-    if (!PageComponent.mixins) PageComponent.mixins = [];
-    PageComponent.mixins.push({
-      onLoad() {
-        // console.log(nav.currentPageParam)
-      },
-      onUnload() {
-        let abandon = pageDatas.pop();
-        // console.log(abandon,nav.currentPageParam)
-      },
-    })
-    return new Vue(PageComponent);
-  }
+export function packing(component) {
+  if (!component.mixins) component.mixins = [];
+  component.mixins.push({
+    onLoad() {
+      // console.log(nav.currentPageParam)
+      console.log(pageDatas)
+    },
+    onUnload() {
+      let abandon = pageDatas.pop();
+      // console.log(abandon,nav.currentPageParam)
+
+    },
+  })
 }

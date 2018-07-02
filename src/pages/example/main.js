@@ -1,6 +1,8 @@
 import Vue from 'vue'
-import App from './Comments'
+import App from './example'
 import {packing} from "../../base/script/navigator";
 packing(App)
-const app = new Vue(App);
-app.$mount();
+const msg = new Vue(App);
+msg.$mount();
+
+export default {}

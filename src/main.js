@@ -10,27 +10,27 @@ app.$mount();
 
 export default {
   config: {
-    pages: ['^pages/book/book-list/main'],
+    pages: ['^pages/example/main'],
     window: {
       "backgroundTextStyle": "light",
       "navigationBarBackgroundColor": "#EA5149",
-      "navigationBarTitleText": "蜗牛图书",
+      "navigationBarTitleText": "mpvue demo",
       "navigationBarTextStyle": "light"
     },
     tabBar: {
       selectedColor: "#EA5149",
       list: [
         {
-          text: '图书',
+          text: '开发测试',
           iconPath: "static/img/book.png",
           selectedIconPath: 'static/img/book-active.png',
-          pagePath: 'pages/book/book-list/main',
+          pagePath: 'pages/dev/main',
         },
         {
-          text: '评论列表',
+          text: '示例',
           iconPath: "static/img/todo.png",
           selectedIconPath: 'static/img/todo-active.png',
-          pagePath: 'pages/comments/main',
+          pagePath: 'pages/example/main',
         },
         {
           text: '个人中心',
