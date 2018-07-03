@@ -3,11 +3,11 @@
     <div class="test-btn" @click="sayHello">sayhello</div>
     <lnk-switch v-model="isChecked"/>
     <div class="open-btn-wrapper">
-      <div class="open-btn" @click="openPopover">oo</div>
+      <div class="open-btn" @click="openPopover"><span class="iconfont dp-icon-qiehuanqizuo"></span></div>
     </div>
     <div class="popover-wrapper" :style="popoverWrapperStyles" @click="closePopover">
       <div class="close-btn-wrapper">
-        <div class="close-btn" @click="openPopover">cc</div>
+        <div class="close-btn" @click="openPopover"><span class="iconfont dp-icon-qiehuanqiyou"></span></div>
       </div>
       <div class="popover-content" style="width: 500rpx;" @click.stop="handleClickPopoverContent">
         <div @click="sayHello" class="btn">sayHello</div>

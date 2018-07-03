@@ -1,6 +1,8 @@
 <template>
   <div class="dev-wrapper">
     <lnk-switch v-model="isChecked"/>
+
+    <span class="iconfont dp-icon-qiehuanqizuo"></span>
   </div>
 </template>
 

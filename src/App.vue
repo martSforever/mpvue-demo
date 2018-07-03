@@ -12,6 +12,8 @@
 
 <style lang="scss">
   /*@formatter:off*/
+  @import "base/libs/iconfont/iconfont.css";
+
   .text-footer{
     text-align: center;
     font-size: 24rpx;
