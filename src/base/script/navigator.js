@@ -77,12 +77,12 @@ export function packing(component) {
   component.mixins.push({
     onLoad() {
       // console.log(nav.currentPageParam)
-      console.log(pageDatas)
+      // console.log(pageDatas)
     },
     onUnload() {
       let abandon = pageDatas.pop();
       // console.log(abandon,nav.currentPageParam)
-      console.log(pageDatas)
+      // console.log(pageDatas)
 
     },
   })

@@ -9,7 +9,7 @@ import config from '../../../src/base/config/config';
 </div>
 */
 
-export default {
+export let dataListMixin = {
   data() {
     return {
       dataOptions: {

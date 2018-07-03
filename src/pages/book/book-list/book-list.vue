@@ -13,7 +13,7 @@
 <script>
 
   import Card from "../../../base/components/Card/Card";
-  import dataListMixin from "../../../base/script/dataList-mixin";
+  import {dataListMixin} from "../../../base/script/dataList-mixin";
   import {get} from "../../../base/script/http";
   import TopSwiper from "../../../base/components/TopSwiper/TopSwiper";
   import {chunk} from "../../../base/script/util";
