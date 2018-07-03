@@ -1,5 +1,6 @@
 <template>
   <div class="dev-wrapper">
+    <div class="test-btn" @click="sayHello">sayhello</div>
     <lnk-switch v-model="isChecked"/>
     <div class="open-btn-wrapper">
       <div class="open-btn" @click="openPopover">oo</div>
@@ -25,7 +26,7 @@
 
   export default {
     components: {LnkSwitch},
-    name: "popover-example",
+    name: "dev",
     data() {
       return {
         isChecked: false,
@@ -58,6 +59,12 @@
 
 <style scoped lang="scss">
   /*@formatter:off*/
+  .test-btn{
+    width: 100%;
+    height: 44px;
+    background-color: blueviolet;
+    color: white;
+  }
   .open-btn-wrapper{
     position: absolute;
     top: 0;
