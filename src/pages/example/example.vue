@@ -25,6 +25,7 @@
           {title: '开关按钮', url: '/pages/example/lnk-switch-example/main'},
           {title: '上下tabbar', url: '/pages/dev/dev-main/main'},
           {title: '样式绑定', url: '/pages/example/css-example/main'},
+          {title: '弹出框实现示例', url: '/pages/example/popover-example/main'},
 
         ]
       }

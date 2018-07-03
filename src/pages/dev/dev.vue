@@ -1,6 +1,7 @@
 <template>
-  <div>
-    dev pages
+  <div class="dev-wrapper">
+    <lnk-switch v-model="isChecked"/>
+
   </div>
 </template>
 
@@ -8,32 +9,25 @@
 
 
   import LnkSwitch from "../../base/base-component/lnk-switch/lnk-switch";
+  import {styles} from "../../base/script/css";
+  import {showModal} from "../../base/script/msg";
 
   export default {
     components: {LnkSwitch},
     name: "dev",
     data() {
       return {
-        isChecked: null,
+        isChecked: false,
       }
     },
-    methods: {},
+    methods: {
+    },
+    computed: {
+    },
   }
 </script>
 
 <style scoped lang="scss">
   /*@formatter:off*/
-  .active{
-    background-color: black;
-    color: white;
-  }
-  .in-active{
-    background-color: blueviolet;
-    color: deepskyblue;
-  }
-
-  .example-item{
-    margin-bottom: 12px;
-  }
   /*@formatter:on*/
 </style>
