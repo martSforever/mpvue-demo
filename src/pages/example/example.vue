@@ -2,11 +2,11 @@
   <div class="example-wrapper">
     <div class="title">功能示例</div>
     <div class="example-item-wrapper"
-         v-for="(exmaple,index) in exmaples"
+         v-for="(example,index) in exmaples"
          :key="index"
-         @click="showDetail(exmaple)"
+         @click="showDetail(example)"
     >
-      <div class="example-item">{{exmaple.title}}</div>
+      <div class="example-item">{{example.title}}</div>
     </div>
   </div>
 </template>
@@ -23,12 +23,15 @@
           {title: '网络请求', url: '/pages/example/http-example/main'},
           {title: '列表自动查询', url: '/pages/example/datalist-mixin-example/main'},
           {title: '开关按钮', url: '/pages/example/lnk-switch-example/main'},
+          {title: '上下tabbar', url: '/pages/dev/dev-main/main'},
+
         ]
       }
     },
     methods: {
-      showDetail(exmaple) {
-        this.$nav.goto(exmaple.url, exmaple);
+      showDetail(example) {
+        console.log(JSON.stringify(example))
+        this.$nav.goto(example.url, example);
       },
     }
   }

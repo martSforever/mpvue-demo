@@ -1,30 +1,26 @@
 <template>
-    <div>
-      <div>this is dev pages...{{value}}</div>
-      <lnk-switch v-model="isChecked"/>
-    </div>
+  <div>
+    dev pages
+  </div>
 </template>
 
 <script>
 
-    import LnkSwitch from "../../base/base-component/lnk-switch/lnk-switch";
 
-    export default {
-      components: {LnkSwitch},
-      name: "dev",
-      data(){
-          return{
-            isChecked:null
-          }
-      },
-      computed:{
-        value(){
-            return JSON.stringify(this.isChecked);
-        },
+  export default {
+    components: {},
+    name: "dev",
+    data() {
+      return {
+        isChecked: null,
       }
-    }
+    },
+    methods: {},
+    computed: {}
+  }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  /*@formatter:off*/
+  /*@formatter:on*/
 </style>
