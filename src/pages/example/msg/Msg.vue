@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>图书列表界面</div>
+    <div>消息提示示例页面</div>
     <input v-model="message"/>
     <button @click="toast">toast</button>
     <button @click="loading">loading</button>
@@ -24,7 +24,7 @@
     },
     methods: {
       toast() {
-        showToast(this.message, {image: '/static/img/book-active.png'});
+        showToast(this.message, {image: '/static/img/me-active.png'});
       },
       loading() {
         showLoading('loading haha...');
