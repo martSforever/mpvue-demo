@@ -20,6 +20,7 @@
           {title: '蜗牛图书', url: '/pages/book/book-list/main'},
           {title: '消息提示', url: '/pages/example/msg/main'},
           {title: '导航', url: '/pages/example/nav/nav-list/main'},
+          {title: '开关按钮', url: '/pages/example/lnk-switch-example/main'},
         ]
       }
     },
