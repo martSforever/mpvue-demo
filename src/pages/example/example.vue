@@ -24,6 +24,7 @@
           {title: '列表自动查询', url: '/pages/example/datalist-mixin-example/main'},
           {title: '开关按钮', url: '/pages/example/lnk-switch-example/main'},
           {title: '上下tabbar', url: '/pages/dev/dev-main/main'},
+          {title: '样式绑定', url: '/pages/example/css-example/main'},
 
         ]
       }
