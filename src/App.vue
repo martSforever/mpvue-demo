@@ -26,5 +26,15 @@
   .text-primary{
     color: #EA5149;
   }
+
+  .load-loop{
+    animation: ani-load-loop 3s linear infinite;
+  }
+
+  @keyframes ani-load-loop {
+    from { transform: rotate(0deg);}
+    50%  { transform: rotate(180deg);}
+    to   { transform: rotate(360deg);}
+  }
   /*@formatter:on*/
 </style>
