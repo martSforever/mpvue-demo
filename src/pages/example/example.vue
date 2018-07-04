@@ -23,7 +23,7 @@
           {title: '网络请求', url: '/pages/example/http-example/main'},
           {title: '列表自动查询', url: '/pages/example/datalist-mixin-example/main'},
           {title: '开关按钮', url: '/pages/example/lnk-switch-example/main'},
-          {title: '上下tabbar', url: '/pages/dev/dev-main/main'},
+          {title: '上下tabbar', url: '/pages/example/tabbar-example/tab-main/main'},
           {title: '样式绑定', url: '/pages/example/css-example/main'},
           {title: '弹出框实现示例', url: '/pages/example/popover-example/main'},
           {title: '阿里巴巴icon', url: '/pages/example/dp-icon-example/main'},

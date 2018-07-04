@@ -1,6 +1,6 @@
-import App from './dev1'
+import App from './tab-main'
 import Vue from 'vue'
-import {packing} from "../../../base/script/navigator";
+import {packing} from "../../../../base/script/navigator";
 packing(App)
 const app = new Vue(App);
 app.$mount();
