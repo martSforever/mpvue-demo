@@ -14,7 +14,7 @@
       }
     },
     onLoad() {
-      console.log('page1 onload...');
+      console.log('page1 onload...',this.$nav.currentPageParam);
     },
     mounted() {
       console.log('page1 mounted...');
