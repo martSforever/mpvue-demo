@@ -19,7 +19,7 @@
         exmaples: [
           {title: '蜗牛图书', url: '/pages/book/book-list/main'},
           {title: '消息提示', url: '/pages/example/msg/main'},
-          {title: '导航', url: '/pages/example/nav/nav-list/main'},
+          {title: '路由导航', url: '/pages/example/nav/nav-list/main'},
           {title: '网络请求', url: '/pages/example/http-example/main'},
           {title: '列表自动查询', url: '/pages/example/datalist-mixin-example/main'},
           {title: '开关按钮', url: '/pages/example/lnk-switch-example/main'},

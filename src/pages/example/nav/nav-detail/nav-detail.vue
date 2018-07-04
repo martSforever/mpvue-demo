@@ -5,8 +5,9 @@
     </div>
     <div><input v-model="user.name"/></div>
     <div>
-      <button @click="commit">commit</button>
-      <button @click="back()">go back</button>
+      <button @click="commit">提交</button>
+      <button @click="back()">返回</button>
+      <button @click="callTopPageCallback">调用父页面传递的回调函数</button>
     </div>
   </div>
 </template>
@@ -16,7 +17,8 @@
     name: "nav-detail",
     data() {
       return {
-        user: {}
+        user: {},
+        topPageCallback: null
       }
     },
     methods: {
@@ -26,9 +28,14 @@
       back() {
         this.$nav.goBack();
       },
+      callTopPageCallback() {
+        this.topPageCallback && this.topPageCallback(this.user);
+      },
     },
     onLoad() {
-      this.user = this.$nav.currentPageParam
+      let {item, callback} = this.$nav.currentPageParam
+      this.user = item;
+      this.topPageCallback = callback;
     },
   }
 </script>

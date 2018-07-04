@@ -8,7 +8,7 @@
   export default {
     name: "page2",
     onLoad() {
-      console.log('page2 onload...');
+      console.log('page2 onload...',this.$nav.currentPageParam);
     },
     mounted() {
       console.log('page2 mounted...');

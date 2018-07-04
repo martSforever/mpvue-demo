@@ -4,12 +4,19 @@
       <div>{{item.name}}</div>
       <div>{{item.age}}岁</div>
     </div>
-    <div><button @click="replaceTo">replace to</button></div>
-    <div><button @click="resetTo">reset to</button></div>
+    <div>
+      <button @click="replaceTo">replace to</button>
+    </div>
+    <div>
+      <button @click="resetTo">reset to</button>
+    </div>
+
   </div>
 </template>
 
 <script>
+  import {showModal} from "../../../../base/script/msg";
+
   export default {
     name: "nav-list",
     data() {
@@ -23,7 +30,10 @@
     },
     methods: {
       handleClickItem(item) {
-        this.$nav.goto('/pages/example/nav/nav-detail/main', item);
+        this.$nav.goto('/pages/example/nav/nav-detail/main', {
+          item: item,
+          callback: this.sayHelloInNavList
+        });
       },
       replaceTo() {
         this.$nav.replaceTo('/pages/example/nav/nav-detail/main', {
@@ -34,6 +44,9 @@
         this.$nav.resetTo('/pages/example/nav/nav-detail/main', {
           name: 'ambzer', age: 22
         })
+      },
+      sayHelloInNavList(user) {
+        showModal(`sayHelloInNavList。。。${user.name}`);
       },
     }
   }
