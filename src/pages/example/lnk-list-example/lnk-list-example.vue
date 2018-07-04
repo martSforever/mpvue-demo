@@ -18,13 +18,13 @@
     components: {
       LnkList
     },
-    name: "page3",
+    name: "lnk-list-example",
     data() {
       return {
         lnkListOptions: {
           url: 'weapp/book/list',
           dataList: [],
-          isLoading:false
+          isLoading: false
         }
       }
     },

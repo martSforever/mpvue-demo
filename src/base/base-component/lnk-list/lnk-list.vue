@@ -82,6 +82,7 @@
       },
     },
     onLoad() {
+      console.log('lnk-list onload...')
       if (!this.lnkListOptions) {
         console.error('lnk-list-optinos不能为空！');
         return;

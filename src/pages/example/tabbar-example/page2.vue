@@ -1,24 +1,52 @@
 <template>
-  <div>
-    this is page2
+  <div class="dev-wrapper">
+    <div>{{'length-->>'+lnkListOptions.dataList.length}}</div>
+    <div>{{'isLoading-->>'+lnkListOptions.isLoading}}</div>
+    <lnk-list :lnk-list-options="lnkListOptions">
+      <div class="list-item" v-for="(item,index) in dataList" :key="index">
+        <div>{{item.title}}</div>
+      </div>
+    </lnk-list>
   </div>
 </template>
 
 <script>
+
+  import LnkList from "../../../base/base-component/lnk-list/lnk-list";
+
   export default {
+    components: {
+      LnkList
+    },
     name: "page2",
-    onLoad() {
-      console.log('page2 onload...',this.$nav.currentPageParam);
+    data() {
+      return {
+        lnkListOptions: {
+          url: 'weapp/book/list',
+          dataList: [],
+          isLoading:false
+        }
+      }
     },
-    mounted() {
-      console.log('page2 mounted...');
-    },
-    created() {
-      console.log('page2 created...');
-    },
+    computed: {}
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  /*@formatter:off*/
+  .dev-wrapper{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    .list-item{
+      height: 100px;
+      background-color: brown;
+      color: white;
+    }
+  }
+  /*@formatter:on*/
 </style>

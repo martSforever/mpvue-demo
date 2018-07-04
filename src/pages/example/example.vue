@@ -29,6 +29,7 @@
           {title: '阿里巴巴icon', url: '/pages/example/dp-icon-example/main'},
           {title: '横向滚动', url: '/pages/example/horizontal-scroll/main'},
           {title: '测试插槽', url: '/pages/example/test-slot/main'},
+          {title: '自动查询组件lnk-list', url: '/pages/example/lnk-list-example/main'},
 
         ]
       }
