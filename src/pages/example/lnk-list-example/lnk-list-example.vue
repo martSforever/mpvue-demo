@@ -1,5 +1,11 @@
 <template>
   <div class="dev-wrapper">
+    <div>
+      使用lnk-list的步骤：<br>
+      1、首先lnk-list的父元素，必须是flex布局，lnk-list的flex为1，会自动填充剩下的高度<br>
+      2、然后在lnkListOptions中必须存在url、dataList:[]，否则无法正常在lnk-list节点内以外的地方上实时渲染datalist中的数据，
+      当然，要使用isLoading也是一样的
+    </div>
     <div>{{'length-->>'+lnkListOptions.dataList.length}}</div>
     <div>{{'isLoading-->>'+lnkListOptions.isLoading}}</div>
     <lnk-list :lnk-list-options="lnkListOptions">
